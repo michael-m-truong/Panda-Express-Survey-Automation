@@ -7,9 +7,10 @@ from selenium.webdriver.chrome.service import Service
 
 def inputSurveyCode(code, lastDigits):
     global driver
+    x=Service('C:\Program Files (x86)\chromedriver.exe')
     options = webdriver.ChromeOptions()
     options.add_experimental_option('excludeSwitches', ['enable-logging'])
-    driver = webdriver.Chrome(options=options)
+    driver = webdriver.Chrome(service=x, options=options)
     driver.get("https://www.pandaguestexperience.com/")
 
     code4Digit = code.split(" ")
