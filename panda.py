@@ -28,10 +28,19 @@ def inputSurveyCode(code, lastDigits):
         print("Wrong survey code")
         driver.quit()
 
-def FillOutSurvey():
+def FillOutSurvey(email_addr):
     nextLink = driver.find_elements(By.ID, "NextButton")
     while len(nextLink) != 0:
         optionButton = driver.find_elements(By.CLASS_NAME, "radioSimpleInput")
+        email = driver.find_elements(By.NAME, "S000057")
+        if len(email) != 0:
+            email = email[0]
+            email.send_keys(email_addr)
+            email = driver.find_element(By.NAME, "S000064")
+            email.send_keys(email_addr)
+            nextLink = driver.find_elements(By.ID, "NextButton")
+            nextLink[0].click()
+            break
         for i in range(0, len(optionButton), 5):
             optionButton[i].click()
         nextLink = driver.find_elements(By.ID, "NextButton")
@@ -41,10 +50,11 @@ def FillOutSurvey():
 
 def main():
     code = input("Enter panda survey code (put space for '-'): ")
+    email_addr = input("Enter email: ")
     lastDigits = code[len(code)-2:len(code):]
     code = code[:len(code)-2:]
     inputSurveyCode(code, lastDigits)
-    FillOutSurvey()
+    FillOutSurvey(email_addr)
   
     
 if __name__ == "__main__":
