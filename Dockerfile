@@ -6,11 +6,11 @@ WORKDIR /app
 COPY . /app
 # Install dependencies
 RUN apt-get update -y
-RUN apt-get install -y python-pip python-dev
+# RUN apt-get install -y python-pip python-dev
 RUN apt purge google-chrome-stable
 RUN apt purge chromium-browser
 RUN apt install -y chromium-browser
-RUN pip install -r requirements.txt
+RUN pip3 install -r requirements.txt
 # Copies everything to the working directory
 # Command to run on container start
 EXPOSE 5000
