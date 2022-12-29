@@ -13,4 +13,4 @@ RUN apt install -y chromium-browser
 RUN pip install -r requirements.txt
 # Copies everything to the working directory
 # Command to run on container start
-CMD [ "python" , "./app.py" ]
+CMD ["gunicorn"  , "-b", "0.0.0.0:8000", "app:app"]
