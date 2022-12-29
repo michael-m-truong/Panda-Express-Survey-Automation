@@ -1,0 +1,85 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+body{
+    background-image: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)), url(back.jpg);
+    background-position: center;
+    background-size: cover;
+    height: 100vh;
+}
+.menu{
+    width: 100%;
+}
+.menu img{
+    width: 15%;
+    margin: 20px 10%;
+    cursor: pointer;
+}
+.menu ul{
+    display: inline-flex;
+    color: #fff;
+    list-style: none;
+    right: 10%;
+    top: 15px;
+    position: absolute;
+}
+.menu ul li{
+    margin: 15px;
+    cursor: pointer;
+    font-size: 18px;
+}
+.menu ul li .fa-solid{
+    margin-right: 13px;
+    font-size: 20px;
+}
+.content{
+    width: 80%;
+    color: #fff;
+    margin: 12% auto 0px;
+}
+.content h1{
+    font-size: 60px;
+    text-transform: uppercase;
+}
+.content p{
+    font-size: 16px;
+    margin: 40px 0px 50px;
+}
+.content ul{
+    list-style-type: none;
+    display: inline-flex;
+    text-transform: uppercase;
+}
+.content ul li{
+    margin-right: 25px;
+    position: relative;
+}
+.content ul li a{
+    text-decoration: none;
+    color: #fff;
+    border: 2px solid #fff;
+    display: block;
+    padding: 12px 20px;
+    width: 120px;
+    text-align: center;
+    z-index: 1;
+}
+.content ul li a:hover{
+    border: 2px solid red;
+    transition: .3s;
+}
+.content ul li span{
+    display: block;
+    width: 0;
+    height: 100%;
+    background: red;
+    top: 0;
+    position: absolute;
+    transition: .3s;
+    z-index: -1;
+}
+.content ul li:hover span{
+    width: 100%;
+}
