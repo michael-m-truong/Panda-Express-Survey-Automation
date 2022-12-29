@@ -14,4 +14,4 @@ RUN pip install -r requirements.txt
 # Copies everything to the working directory
 # Command to run on container start
 EXPOSE 5000
-ENTRYPOINT ["gunicorn", "--config", "gunicorn_config.py", "app.wsgi:app"]
+ENTRYPOINT ["gunicorn", "--config", "gunicorn_config.py", "wsgi:app"]
