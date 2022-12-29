@@ -8,7 +8,7 @@ def home():
 
 @app.route("/fill-survey", methods=['POST'])
 def survey():
-    from panda import inputSurveyCode, FillOutSurvey
+    from production_panda import inputSurveyCode, FillOutSurvey
     code = "1111 1111 1111 1111 22"
     email_addr = 'eee@gmail.com'
     lastDigits = code[len(code)-2:len(code):]
