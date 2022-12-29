@@ -2,3 +2,4 @@ Flask
 Gunicorn
 selenium
 webdriver-manager
+futures
