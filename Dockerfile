@@ -1,5 +1,5 @@
 # Sets the base image for subsequent instructions
-FROM ubuntu:18.04
+FROM python:3.8-slim
 # Sets the working directory in the container  
 WORKDIR /app
 # Copies the files to the working directory
