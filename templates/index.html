@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Landing Page</title>
-    <link rel="stylesheet" href="/static/style.css">
+    <title>Panda Express Survey Filler</title>
+    <link rel="stylesheet" href="/static/test.css">
     <script src="https://kit.fontawesome.com/17b6e821ef.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -16,12 +16,24 @@
         </ul>
     </div>
     <div class="content">
-        <h1>Panda Express Survey Automation</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. <br> Omnis laborum neque accusantium porro cumque quisquam eos perferendis quia! <br> Tenetur aperiam facilis libero sint laudantium pariatur blanditiis quos architecto doloremque rem.</p>
+        <div class="col-12">
+        <h1>Panda Express Survey<br>Automation</h1>
+        <p id="about">Enter the 22-digit survey code at the bottom of the receipt to get your free entrée</p>
+        <p class="surveyInput" aria-hidden="true">
+            <input class="coupon-length-4 " type="text" autocomplete="off" id="CN1" name="CN1"  maxlength="4" value="" autotab="" aria-hidden="false"> - 
+            <input class="coupon-length-4 " type="text" autocomplete="off" id="CN2" name="CN2"  maxlength="4" value="" autotab="" aria-hidden="false"> - 
+            <input class="coupon-length-4 " type="text" autocomplete="off" id="CN3" name="CN3"  maxlength="4" value="" autotab="" aria-hidden="false"> - 
+            <input class="coupon-length-4 " type="text" autocomplete="off" id="CN4" name="CN4"  maxlength="4" value="" autotab="" aria-hidden="false"> - 
+            <input class="coupon-length-4 " type="text" autocomplete="off" id="CN5" name="CN5"  maxlength="4" value="" autotab="" aria-hidden="false"> - 
+            <input class="coupon-length-2 " type="text" autocomplete="off" id="CN6" name="CN6"  maxlength="2" value="" aria-hidden="false">
+        </p>
         <ul>
-            <li><a href="#">Read More</a><span></span></li>
-            <li><a href="#">Our Work</a><span></span></li>
+            <li><a href="#">Submit</a><span></span></li>
         </ul>
+        </div>
     </div>
+    <script>
+        
+    </script>
 </body>
 </html>

@@ -10,15 +10,63 @@
     height: 100vh;
 } */
 
+.col-1 {width: 8.33%;}
+.col-2 {width: 16.66%;}
+.col-3 {width: 25%;}
+.col-4 {width: 33.33%;}
+.col-5 {width: 41.66%;}
+.col-6 {width: 50%;}
+.col-7 {width: 58.33%;}
+.col-8 {width: 66.66%;}
+.col-9 {width: 75%;}
+.col-10 {width: 83.33%;}
+.col-11 {width: 91.66%;}
+.col-12 {width: 100%;}
+
+[class*="col-"] {
+    float: left;
+    padding: 0;
+}
+
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
 
 @media (max-width: 828px) {
     body {
         /*background-color: rebeccapurple;*/
-        background-image: url(leaves-plant-foliage-grow-f2eb758a2462af5b659a4a40a0dc4605.jpg);
-        background-position: center;
+        background-image: url(testleaf4.jpg);
+        /* background-position: center; */
         background-size: cover;
         height: 100%;
         width: 100%;
+        /* margin: 0 auto;
+        text-align: center; */
+    }
+    .content h1{
+        font-size: 8vw;
+        text-transform: uppercase;
+        max-width: 80vh;
+        text-align: center;
+        margin: 0 auto;
+    }
+    .content p{
+        font-size: 3vh;
+        margin: 40px 0px 50px;
+        padding: 3px;
+    }
+    .coupon-length-4 {
+        max-width: 2.98em;
+    
+        font-size: 17px;
+    }
+    
+    .coupon-length-2 {
+        max-width: 1.64em;
+    
+        font-size: 17px;
     }
 }
 
@@ -28,6 +76,28 @@
         background-position: center;
         background-size: cover;
         height: 100vh;
+    }
+    .content h1{
+        font-size: 5vh;
+        text-transform: uppercase;
+        max-width: 80vh;
+        text-align: center;
+        margin: 0 auto;
+    }
+    .content p{
+        font-size: 3vh;
+        margin: 40px 0px 50px;
+    }
+    .coupon-length-4 {
+        max-width: 2.98em;
+    
+        font-size: 1.5em;
+    }
+    
+    .coupon-length-2 {
+        max-width: 1.64em;
+    
+        font-size: 1.5em;
     }
   }
 
@@ -57,21 +127,12 @@
     font-size: 20px;
 }
 .content{
-    width: 80vh;
+    width: 100%;
     color: #fff;
-    margin: 12% auto 0px;
+    margin: 15vh 0 0;
     text-align: center;
 }
-.content h1{
-    font-size: 5vh;
-    text-transform: uppercase;
-    max-width: 80vh;
-    text-align: center;
-}
-.content p{
-    font-size: 16px;
-    margin: 40px 0px 50px;
-}
+
 .content ul{
     list-style-type: none;
     display: inline-flex;
@@ -80,6 +141,7 @@
 .content ul li{
     margin-right: 25px;
     position: relative;
+    margin: 0 auto
 }
 .content ul li a{
     text-decoration: none;
@@ -105,6 +167,13 @@
     transition: .3s;
     z-index: -1;
 }
+
 .content ul li:hover span{
     width: 100%;
+}
+
+
+#about {
+    padding-right: 10px;
+    padding-left: 10px;
 }
