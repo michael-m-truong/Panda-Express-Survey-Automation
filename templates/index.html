@@ -17,7 +17,7 @@
     </div>
     <form id="form" action="/fill-survey" method="post">
     <div class="content" id="content">
-        <div class="col-12">
+        <div id="inside-content" class="col-12">
         <h1>Panda Express Survey<br>Automation</h1>
         <p id="about">Enter your email and the 22-digit survey code at the bottom of the receipt to get your free entrée</p>
         <input class="emailInput" name="email" type="text" placeholder="Email Address">
@@ -49,7 +49,8 @@
                 xhr.onload = function() {
                 if (xhr.status === 200) {
                     // update the HTML content
-                    document.getElementById('content').innerHTML = xhr.responseText;
+                    document.getElementById('inside-content').innerHTML = xhr.responseText;
+                    document.getElementById('loading-gif').style.display = 'inline-block'
                 }
                 };
                 xhr.send(json);
@@ -83,6 +84,7 @@
                 ">Submit</a><span></span></li>
         </ul>
         </div>
+        <img id="loading-gif" src="/static/ezgif.com-gif-maker.gif" style="display: none;">
     </div>
     </form>
     <script>

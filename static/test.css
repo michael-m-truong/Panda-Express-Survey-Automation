@@ -37,9 +37,9 @@
 @media (max-width: 828px) {
     body {
         /*background-color: rebeccapurple;*/
-        background-image: url(testleaf4.jpg);
-        /* background-position: center; */
-        background-size: cover;
+        background-image: url(testleaf11.jpg);
+        background-position: .14px;
+        background-size: 230%;
         height: 100%;
         width: 100%;
         /* margin: 0 auto;
