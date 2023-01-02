@@ -27,6 +27,11 @@ def inputSurveyCode(code, lastDigits):
     except selenium.common.exceptions.NoSuchElementException:
         print("Wrong survey code")
         driver.quit()
+    nextLink = driver.find_elements(By.ID, "NextButton")
+    buttonValue =  nextLink[0].get_attribute('value')
+    if buttonValue == "Start":
+        driver.quit()
+        raise Exception("Invalid code")
 
 def FillOutSurvey(email_addr):
     nextLink = driver.find_elements(By.ID, "NextButton")

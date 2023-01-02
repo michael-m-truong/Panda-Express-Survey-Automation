@@ -59,14 +59,32 @@
     }
     .coupon-length-4 {
         max-width: 2.98em;
-    
+        height: 30px;
         font-size: 17px;
     }
     
     .coupon-length-2 {
         max-width: 1.64em;
-    
+        height: 30px;
         font-size: 17px;
+    }
+
+    .emailInput {
+        width: 75%;
+        height: 36px;
+        font-size: 1.2em;
+    }
+
+    #loading-gif {
+        height: 25vh;
+        width: 25vh;
+    }
+
+    #invalid-gif {
+        height: 25vh;
+    }
+    #waving-bye-gif {
+        height: 25vh;
     }
 }
 
@@ -99,6 +117,14 @@
     
         font-size: 1.5em;
     }
+
+    .emailInput {
+        width: 30%;
+        font-size: 1.2em;
+    }
+    #waving-bye-gif {
+        height: 25vh;
+    }
   }
 
 .menu{
@@ -129,7 +155,7 @@
 .content{
     width: 100%;
     color: #fff;
-    margin: 15vh 0 0;
+    margin: 11vh 0 0;
     text-align: center;
 }
 
@@ -177,3 +203,7 @@
     padding-right: 10px;
     padding-left: 10px;
 }
+
+/* input::placeholder {
+    text-align: center;
+} */

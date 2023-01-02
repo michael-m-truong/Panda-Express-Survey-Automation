@@ -15,25 +15,87 @@
             <li onclick="location.href='http://github.com/michael-m-truong/Panda-Express-Survey-Automation'"><i class="fa-brands fa-github"></i></i> github.com/michael-m-truong/Panda-Express-Survey-Automation</li>
         </ul>
     </div>
-    <div class="content">
+    <form id="form" action="/fill-survey" method="post">
+    <div class="content" id="content">
         <div class="col-12">
         <h1>Panda Express Survey<br>Automation</h1>
-        <p id="about">Enter the 22-digit survey code at the bottom of the receipt to get your free entrée</p>
+        <p id="about">Enter your email and the 22-digit survey code at the bottom of the receipt to get your free entrée</p>
+        <input class="emailInput" name="email" type="text" placeholder="Email Address">
         <p class="surveyInput" aria-hidden="true">
-            <input class="coupon-length-4 " type="text" autocomplete="off" id="CN1" name="CN1"  maxlength="4" value="" autotab="" aria-hidden="false"> - 
-            <input class="coupon-length-4 " type="text" autocomplete="off" id="CN2" name="CN2"  maxlength="4" value="" autotab="" aria-hidden="false"> - 
-            <input class="coupon-length-4 " type="text" autocomplete="off" id="CN3" name="CN3"  maxlength="4" value="" autotab="" aria-hidden="false"> - 
-            <input class="coupon-length-4 " type="text" autocomplete="off" id="CN4" name="CN4"  maxlength="4" value="" autotab="" aria-hidden="false"> - 
-            <input class="coupon-length-4 " type="text" autocomplete="off" id="CN5" name="CN5"  maxlength="4" value="" autotab="" aria-hidden="false"> - 
-            <input class="coupon-length-2 " type="text" autocomplete="off" id="CN6" name="CN6"  maxlength="2" value="" aria-hidden="false">
+            <input class="coupon-length-4 " type="text" autocomplete="off" id="CN1" name="CN1"  maxlength="4" value="" autotab="" aria-hidden="false" pattern="[0-9]*" onkeyup="autotab(this)"> - 
+            <input class="coupon-length-4 " type="text" autocomplete="off" id="CN2" name="CN2"  maxlength="4" value="" autotab="" aria-hidden="false" pattern="[0-9]*" onkeyup="autotab(this)"> - 
+            <input class="coupon-length-4 " type="text" autocomplete="off" id="CN3" name="CN3"  maxlength="4" value="" autotab="" aria-hidden="false" pattern="[0-9]*" onkeyup="autotab(this)"> - 
+            <input class="coupon-length-4 " type="text" autocomplete="off" id="CN4" name="CN4"  maxlength="4" value="" autotab="" aria-hidden="false" pattern="[0-9]*" onkeyup="autotab(this)"> - 
+            <input class="coupon-length-4 " type="text" autocomplete="off" id="CN5" name="CN5"  maxlength="4" value="" autotab="" aria-hidden="false" pattern="[0-9]*" onkeyup="autotab(this)"> - 
+            <input class="coupon-length-2 " type="text" autocomplete="off" id="CN6" name="CN6"  maxlength="2" value="" aria-hidden="false" pattern="[0-9]*" onkeyup="autotab(this)">
         </p>
         <ul>
-            <li><a href="#">Submit</a><span></span></li>
+            <li><a href="#" onclick="
+            setTimeout(() => {
+            
+                var data = {
+                    email: document.querySelector('.emailInput').value,
+                    CN1: document.querySelector('#CN1').value,
+                    CN2: document.querySelector('#CN2').value,
+                    CN3: document.querySelector('#CN3').value,
+                    CN4: document.querySelector('#CN4').value,
+                    CN5: document.querySelector('#CN5').value,
+                    CN6: document.querySelector('#CN6').value
+                };
+                var json = JSON.stringify(data);
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', '/loading');
+                xhr.setRequestHeader('Content-Type', 'application/json');
+                xhr.onload = function() {
+                if (xhr.status === 200) {
+                    // update the HTML content
+                    document.getElementById('content').innerHTML = xhr.responseText;
+                }
+                };
+                xhr.send(json);
+                history.pushState({}, '', '/loading');
+            }, 400);
+                // setTimeout(() => {
+                //     var xhr = new XMLHttpRequest();
+                //     xhr.open('POST', '/fill-survey');
+                //     xhr.onload = function() {
+                //         if (xhr.status === 200) {
+                //         // do something with the response
+                //         }
+                //     };
+                //     xhr.send();
+                // }, 1000);
+                async function fillSurvey() {
+                    await setTimeout(() => {
+                        document.getElementById('form').submit(); 
+                        return false;
+                    }, 1000);
+                    console.log()
+                    //history.pushState({}, '', '/complete');
+                }
+                fillSurvey()
+                // setTimeout(() => {
+                //     document.getElementById('form').submit(); 
+                // return false;
+                // }, 1000);
+                // document.getElementById('form').submit(); 
+                // return false;
+                ">Submit</a><span></span></li>
         </ul>
         </div>
     </div>
+    </form>
     <script>
-        
+        function autotab(input) {
+            if (input.value.length === input.maxLength && event.keyCode != 8) {
+                let next = input.nextElementSibling;
+                next.focus();
+            }
+            if (input.value.length === 0 && event.keyCode == 8) {
+                let next = input.previousElementSibling;
+                next.focus();
+            }
+        }
     </script>
 </body>
 </html>

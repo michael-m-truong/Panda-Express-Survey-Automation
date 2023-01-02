@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panda Express Survey Filler</title>
+    <link rel="stylesheet" href="/static/test.css">
+    <script src="https://kit.fontawesome.com/17b6e821ef.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="menu">
+        <img src="logo.png" alt="">
+        <ul>
+            <li onclick="location.href='http://github.com/michael-m-truong/Panda-Express-Survey-Automation'"><i class="fa-brands fa-github"></i></i> github.com/michael-m-truong/Panda-Express-Survey-Automation</li>
+        </ul>
+    </div>
+    <form id="form" action="/fill-survey" method="post">
+    <div class="content" id="content">
+        <div class="col-12">
+            <h1>Panda Express Survey<br>Automation</h1>
+            <p id="about">Verifying survey code...</p>
+            <img id="gif" src="/static/panda_op_crop.gif">
+        </div>
+    </div>
+    <script>
+        function autotab(input) {
+            if (input.value.length === input.maxLength && event.keyCode != 8) {
+                let next = input.nextElementSibling;
+                next.focus();
+            }
+            if (input.value.length === 0 && event.keyCode == 8) {
+                let next = input.previousElementSibling;
+                next.focus();
+            }
+        }
+    </script>
+</body>
+</html>
