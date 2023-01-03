@@ -11,6 +11,7 @@ app.secret_key = os.environ.get("SECRET_KEY")
 @app.route("/")
 def home():
     print("ok")
+    session['visited'] = True
     return render_template("index.html")
 
 @app.route("/submit", methods=["POST"])

@@ -128,5 +128,21 @@
             
             // });
     </script>
+    <script>
+        function hidePreloader() {
+            let loader = document.querySelector('.loader');
+            loader.classList = "loader--hidden";
+
+            loader.addEventListener("transitionend", () => {
+                document.body.removeChild(loader);
+            });
+        }
+    </script>
+    {% if 'visited' in session %}
+    <script>
+        console.log("no loader")
+        hidePreloader();
+    </script>
+    {% endif %}
 </body>
 </html>
