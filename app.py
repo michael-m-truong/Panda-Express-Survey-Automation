@@ -71,7 +71,8 @@ def survey():
         inputSurveyCode(code, lastDigits)
         t = Thread(target=FillOutSurvey, args=(session["email"],))
         t.start()
-    except:
+    except Exception as e:
+        print(e)
         return redirect(url_for("invalid"))
     return redirect(url_for("complete"))
 

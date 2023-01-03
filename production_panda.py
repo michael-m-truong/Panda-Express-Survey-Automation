@@ -34,7 +34,7 @@ def inputSurveyCode(code, lastDigits):
     lengthNoSpaces= verifyLength.replace(" ", "")
     if len(lengthNoSpaces) != 22:
         driver.quit()
-        raise Exception("Invalid code")
+        raise Exception("Invalid code length")
 
     code4Digit = code.split(" ")
     for i in range(1,6):
