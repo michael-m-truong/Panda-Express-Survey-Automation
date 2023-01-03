@@ -98,6 +98,7 @@
         </ul>
         </div>
         <img id="loading-gif" src="/static/panda_op_crop.gif" style="display: none;">
+        <div class="loader"></div>
     </div>
     </form>
     <script>
@@ -111,6 +112,21 @@
                 next.focus();
             }
         }
+        window.addEventListener("load", () => {
+            const loader = document.querySelector(".loader");
+
+            loader.classList = "loader--hidden";
+
+            loader.addEventListener("transitionend", () => {
+                document.body.removeChild(loader);
+            });
+        });
+            // window.addEventListener("beforeunload", () => {
+            // const loader = document.querySelector(".loader--hidden");
+
+            // loader.classList = "loader";
+            
+            // });
     </script>
 </body>
 </html>
