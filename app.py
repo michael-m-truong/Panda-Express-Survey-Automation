@@ -60,22 +60,13 @@ def complete():
 def invalid():
     return render_template("invalid.html")
 
-@app.route("/fill-survey", methods=['GET','POST'])
+@app.route("/fill-survey", methods=['POST'])
 def survey():
-    if request.method == "GET":
-        return "ur moma"
-    print(session["email"] + "eeeeeeeeeeeee")
     from production_panda import inputSurveyCode, FillOutSurvey
-    code = "1111 2222 3333 4444 5555 22"
-    code = session['CN1'] + " " + session['CN2'] + " " + session['CN3'] + " " + session['CN4'] + " " + session['CN5'] + " " + session['CN6']
-    #email_addr = request.form["email"]
-    lastDigits = code[len(code)-2:len(code):]
-    code = code[:len(code)-2:]
-    #session["email"] =  email_addr
-    print(session["email"])
-    # return redirect(url_for("loading"))
-    # return render_template("loading.html")
     try:
+        code = session['CN1'] + " " + session['CN2'] + " " + session['CN3'] + " " + session['CN4'] + " " + session['CN5'] + " " + session['CN6']
+        lastDigits = code[len(code)-2:len(code):]
+        code = code[:len(code)-2:]
         inputSurveyCode(code, lastDigits)
         t = Thread(target=FillOutSurvey, args=(session["email"],))
         t.start()
