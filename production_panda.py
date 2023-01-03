@@ -31,6 +31,12 @@ def inputSurveyCode(code, lastDigits):
     driver = webdriver.Chrome(service=chrome_service, options=chrome_options)
     driver.get("https://www.pandaguestexperience.com/")
 
+    verifyLength = code + lastDigits
+    lengthNoSpaces= verifyLength.replace(" ", "")
+    if len(lengthNoSpaces) != 22:
+        driver.quit()
+        raise Exception("Invalid code")
+
     code4Digit = code.split(" ")
     for i in range(1,6):
         inputBox = driver.find_element(By.NAME, "CN"+str(i))

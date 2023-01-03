@@ -31,6 +31,18 @@
         </p>
         <ul>
             <li><a href="#" onclick="
+            // var email = document.querySelector('.emailInput').value;
+            // var CN1 = document.querySelector('#CN1').value;
+            // var CN2 = document.querySelector('#CN2').value;
+            // var CN3 = document.querySelector('#CN3').value;
+            // var CN4 = document.querySelector('#CN4').value;
+            // var CN5 = document.querySelector('#CN5').value;
+            // var CN6 = document.querySelector('#CN6').value; 
+
+            // if (email === '' || CN1 === '' || CN2 === '' || CN3 === '' || CN4 === '' || CN5 === '' || CN6 === '') {
+            //     return false;
+            // }
+            
             setTimeout(() => {
             
                 var data = {
@@ -56,35 +68,36 @@
                 xhr.send(json);
                 history.pushState({}, '', '/loading');
             }, 400);
-                // setTimeout(() => {
-                //     var xhr = new XMLHttpRequest();
-                //     xhr.open('POST', '/fill-survey');
-                //     xhr.onload = function() {
-                //         if (xhr.status === 200) {
-                //         // do something with the response
-                //         }
-                //     };
-                //     xhr.send();
-                // }, 1000);
-                async function fillSurvey() {
-                    await setTimeout(() => {
+            setTimeout(() => {
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', '/fill-survey');
+                xhr.onload = function() {
+                    if (xhr.status === 200) {
+                        document.body.innerHTML = xhr.responseText;
+                        console.log(document.getElementById('about'))
+                        if (document.getElementById('about').innerText == 'Invalid code, please try again'){
+                            history.pushState({}, '', '/invalid');
+                        }
+                        else {
+                            history.pushState({}, '', '/complete');
+                        }
+                    }
+                };
+                xhr.send();
+            }, 500);
+                /*async function fillSurvey() {
+                    setTimeout(() => {
                         document.getElementById('form').submit(); 
                         return false;
                     }, 1000);
                     console.log()
                     //history.pushState({}, '', '/complete');
                 }
-                fillSurvey()
-                // setTimeout(() => {
-                //     document.getElementById('form').submit(); 
-                // return false;
-                // }, 1000);
-                // document.getElementById('form').submit(); 
-                // return false;
+                fillSurvey() */
                 ">Submit</a><span></span></li>
         </ul>
         </div>
-        <img id="loading-gif" src="/static/ezgif.com-gif-maker.gif" style="display: none;">
+        <img id="loading-gif" src="/static/panda_op_crop.gif" style="display: none;">
     </div>
     </form>
     <script>
