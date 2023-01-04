@@ -51,7 +51,7 @@ RUN apt-get update && apt-get install -y \
     chromium-browser \ 
     python3-pip \ 
     libnss3 \
-    coreutils \ 
+    coreutils
     #snapd
 
 # RUN snap --version
