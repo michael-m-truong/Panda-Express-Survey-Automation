@@ -52,13 +52,13 @@ RUN apt-get update && apt-get install -y \
     python3-pip \ 
     libnss3 \
     coreutils \ 
-    snapd
-    # systemctl
+    snapd \ 
+    systemctl
 
 # RUN systemctl unmask snapd.service
 # RUN systemctl enable snapd.service
-# RUN systemctl start snapd.service
-# RUN snap install chromium
+RUN systemctl start snapd.service
+RUN snap install chromium
 RUN chromium-browser --version
 
 # Change ownership of the app directory to the non-root user
@@ -67,12 +67,12 @@ RUN chown -R myuser:myuser /home/myuser/app
 RUN pip install -r requirements.txt
 
 # Download and install ChromeDriver
-RUN wget https://chromedriver.storage.googleapis.com/108.0.5359.71/chromedriver_linux64.zip && \
-unzip chromedriver_linux64.zip && \
-rm chromedriver_linux64.zip && \
-chmod +x chromedriver && \
-mv chromedriver /usr/local/bin/
-ENV PATH='/usr/local/bin:${PATH}'
+# RUN wget https://chromedriver.storage.googleapis.com/108.0.5359.71/chromedriver_linux64.zip && \
+# unzip chromedriver_linux64.zip && \
+# rm chromedriver_linux64.zip && \
+# chmod +x chromedriver && \
+# mv chromedriver /usr/local/bin/
+ENV PATH='/snap/bin:${PATH}'
 
 # Switch to the non-root user
 USER myuser
