@@ -28,7 +28,7 @@
 # EXPOSE 5000
 # ENTRYPOINT ["gunicorn", "--config", "gunicorn_config.py", "wsgi:app"]
 
-FROM ubuntu:20.04
+FROM ubuntu:22.04
 
 # Create a new non-root user
 RUN useradd -m myuser
