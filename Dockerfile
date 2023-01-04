@@ -59,7 +59,7 @@ RUN apt-get update && apt-get install -y \
 # RUN systemctl enable snapd.service
 # RUN systemctl start snapd.service
 # RUN snap install chromium
-RUN chrome-browser --version
+RUN chromium-browser --version
 
 # Change ownership of the app directory to the non-root user
 RUN chown -R myuser:myuser /home/myuser/app
