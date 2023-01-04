@@ -46,9 +46,10 @@ RUN apt-get update && apt-get install -y \
     libx11-6 \
     libasound2 \
     libpulse0 \ 
-    chromium-browser
-RUN apt-get update -y
-RUN apt-get install -y python3-pip
+    chromium-browser \ 
+    python3-pip
+
+RUN pip install -r requirements.txt
 
 # Download and install ChromeDriver
 RUN wget https://chromedriver.storage.googleapis.com/108.0.5359.71/chromedriver_linux64.zip && \
@@ -58,7 +59,6 @@ chmod +x chromedriver && \
 mv chromedriver /usr/local/bin/
 ENV PATH='/usr/local/bin:${PATH}'
 
-RUN pip install -r requirements.txt
 CMD chromium-browser
 # Copies everything to the working directory
 # Command to run on container start
