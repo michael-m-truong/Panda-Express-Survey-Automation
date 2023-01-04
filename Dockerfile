@@ -56,6 +56,7 @@ RUN wget https://chromedriver.storage.googleapis.com/108.0.5359.71/chromedriver_
 unzip chromedriver_linux64.zip && \
 rm chromedriver_linux64.zip && \
 chmod +x chromedriver && \
+./chromedriver && \
 mv chromedriver /usr/local/bin/
 ENV PATH='/usr/local/bin:${PATH}'
 
