@@ -27,7 +27,7 @@ def inputSurveyCode(code, lastDigits):
     for option in options:
         chrome_options.add_argument(option)
 
-    driver = webdriver.Chrome(executable_path="/usr/local/bin/chromedriver", options=chrome_options)
+    driver = webdriver.Chrome(executable_path="/usr/local/bin/chromedriver_linux64", options=chrome_options)
     driver.get("https://www.pandaguestexperience.com/")
 
     verifyLength = code + lastDigits
