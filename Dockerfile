@@ -53,6 +53,9 @@ RUN apt-get update && apt-get install -y \
     libnss3 \
     coreutils
 
+# Change ownership of the app directory to the non-root user
+RUN chown -R myuser:myuser /home/myuser/app
+
 RUN pip install -r requirements.txt
 
 # Download and install ChromeDriver
@@ -62,9 +65,6 @@ rm chromedriver_linux64.zip && \
 chmod +x chromedriver && \
 mv chromedriver /usr/local/bin/
 ENV PATH='/usr/local/bin:${PATH}'
-
-# Change ownership of the app directory to the non-root user
-RUN busybox chmod -R 777 /home/myuser/app
 
 # Switch to the non-root user
 USER myuser
