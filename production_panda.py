@@ -13,7 +13,7 @@ from selenium.webdriver.chrome.options import Options
 
 def inputSurveyCode(code, lastDigits):
     global driver
-    chrome_service = Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install())
+    #chrome_service = Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install())
 
     chrome_options = Options()
     options = [
@@ -29,7 +29,7 @@ def inputSurveyCode(code, lastDigits):
         chrome_options.add_argument(option)
 
     print("HEADLESS CHECK")
-    driver = webdriver.Chrome(service=chrome_service, options=chrome_options)
+    driver = webdriver.Chrome(executable_path="/usr/local/bin/chromedriver", options=chrome_options)
     print("IT CAN BE NON HEADLESS")
     driver.get("https://www.pandaguestexperience.com/")
 
