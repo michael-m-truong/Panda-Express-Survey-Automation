@@ -5,12 +5,12 @@
 # # Copies the files to the working directory
 # COPY . /app
 # # Install dependencies
-# RUN apt-get update && apt-get install -y \
-#     libgconf-2-4 \
-#     libfontconfig1 \
-#     libx11-6 \
-#     libasound2 \
-#     libpulse0
+# # RUN apt-get update && apt-get install -y \
+# #     libgconf-2-4 \
+# #     libfontconfig1 \
+# #     libx11-6 \
+# #     libasound2 \
+# #     libpulse0
 # RUN apt-get update -y
 # RUN apt-get install -y python3-pip
 #     # RUN wget https://chromedriver.storage.googleapis.com/108.0.5359.71/chromedriver_linux64.zip && \
@@ -27,7 +27,6 @@
 # # Command to run on container start
 # EXPOSE 5000
 # ENTRYPOINT ["gunicorn", "--config", "gunicorn_config.py", "wsgi:app"]
-
 
 # Sets the base image for subsequent instructions
 FROM ubuntu:22.04
@@ -51,11 +50,9 @@ RUN apt-get update -y
 RUN apt-get install -y python3-pip
 
 # Download and install ChromeDriver
-RUN wget https://chromedriver.storage.googleapis.com/89.0.4389.82/chromedriver_linux64.zip && \
-    unzip chromedriver_linux64.zip && \
-    rm chromedriver_linux64.zip && \
-    chmod +x chromedriver && \
-    mv chromedriver /usr/local/bin/
+RUN wget https://chromedriver.chromium.org/downloads/chromedriver_linux64.zip && \
+    unzip chromedriver_linux64.zip -d /usr/local/bin/ && \
+    rm chromedriver_linux64.zip
 
 RUN pip install -r requirements.txt
 
