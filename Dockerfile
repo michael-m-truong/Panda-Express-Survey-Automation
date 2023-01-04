@@ -28,7 +28,7 @@
 # EXPOSE 5000
 # ENTRYPOINT ["gunicorn", "--config", "gunicorn_config.py", "wsgi:app"]
 
-FROM ubuntu:22.04
+FROM ubuntu:20.04
 
 # Create a new non-root user
 RUN useradd -m myuser
@@ -51,7 +51,10 @@ RUN apt-get update && apt-get install -y \
     chromium-browser \ 
     python3-pip \ 
     libnss3 \
-    coreutils
+    coreutils \ 
+    snapd
+
+RUN snap install chromium
 
 # Change ownership of the app directory to the non-root user
 RUN chown -R myuser:myuser /home/myuser/app

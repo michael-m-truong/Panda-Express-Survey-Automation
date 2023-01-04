@@ -22,8 +22,8 @@ def inputSurveyCode(code, lastDigits):
         #"--disable-extensions",
         "--headless",
         "--no-sandbox",
-        "--disable-setuid-sandbox",
-        "--remote-debugging-port=9222",
+        #"--disable-setuid-sandbox",
+        #"--remote-debugging-port=9222",
         "--disable-dev-shm-usage"
     ]
     for option in options:
