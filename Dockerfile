@@ -63,6 +63,11 @@ whereis chromedriver && \
 echo testtttttttttttttttttttttttttt
 ENV PATH='/usr/local/bin:${PATH}'
 
+# Set the user as the default user
+USER user
+
+# Start Chrome as the normal user
+CMD ["gosu", "user", "chromium-browser"]
 # CMD chromium-browser
 # Copies everything to the working directory
 # Command to run on container start
