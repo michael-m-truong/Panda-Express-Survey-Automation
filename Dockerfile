@@ -52,13 +52,14 @@ RUN apt-get update && apt-get install -y \
     python3-pip \ 
     libnss3 \
     coreutils \ 
-    snapd \ 
-    systemctl
+    snapd 
+    # systemctl
 
-RUN systemctl unmask snapd.service
-RUN systemctl enable snapd.service
-RUN systemctl start snapd.service
-RUN snap install chromium
+# RUN systemctl unmask snapd.service
+# RUN systemctl enable snapd.service
+# RUN systemctl start snapd.service
+# RUN snap install chromium
+RUN apt purge chromium-browser
 
 # Change ownership of the app directory to the non-root user
 RUN chown -R myuser:myuser /home/myuser/app
