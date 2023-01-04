@@ -73,7 +73,9 @@ def survey():
         t.start()
     except Exception as e:
         print(e)
+        session.clear()
         return redirect(url_for("invalid"))
+    session.clear()
     return redirect(url_for("complete"))
 
 if __name__ == '__main__':
