@@ -7,16 +7,17 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-# from webdriver_manager.chrome import ChromeDriverManager
-# from webdriver_manager.core.utils import ChromeType
+from webdriver_manager.chrome import ChromeDriverManager
+from webdriver_manager.core.utils import ChromeType
 from selenium.webdriver.chrome.options import Options
 
 def inputSurveyCode(code, lastDigits):
     global driver
-    # chrome_service = Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install())
+    chrome_service = Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install())
 
     chrome_options = Options()
     options = [
+        "--headless",
         "--disable-gpu",
         "--window-size=1920,1200",
         "--ignore-certificate-errors",
@@ -27,7 +28,9 @@ def inputSurveyCode(code, lastDigits):
     for option in options:
         chrome_options.add_argument(option)
 
-    driver = webdriver.Chrome(executable_path="/usr/local/bin/chromedriver.exe", options=chrome_options)
+    print("HEADLESS CHECK")
+    driver = webdriver.Chrome(service=chrome_service, options=chrome_options)
+    print("IT CAN BE NON HEADLESS")
     driver.get("https://www.pandaguestexperience.com/")
 
     verifyLength = code + lastDigits
