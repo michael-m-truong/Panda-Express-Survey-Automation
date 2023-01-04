@@ -58,9 +58,9 @@ unzip chromedriver_linux64.zip && \
 rm chromedriver_linux64.zip && \
 chmod +x chromedriver && \
 # ./chromedriver && \
-mv chromedriver && \
+mv chromedriver /usr/local/bin/ && \
 whereis chromedriver && \
-echo hereeeeeeeeeeeeeeeeeeeeeeeeeeee
+echo testtttttttttttttttttttttttttt
 ENV PATH='/usr/local/bin:${PATH}'
 
 # CMD chromium-browser
