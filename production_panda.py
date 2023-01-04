@@ -17,16 +17,18 @@ def inputSurveyCode(code, lastDigits):
 
     chrome_options = Options()
     options = [
-        "--headless",
-        "--window-size=1920,1200",
-        "--ignore-certificate-errors",
-        "--disable-extensions",
+        #"--window-size=1920,1200",
+        #"--ignore-certificate-errors",
+        #"--disable-extensions",
         "--no-sandbox",
+        "--disable-setuid-sandbox",
         "--disable-dev-shm-usage"
     ]
     for option in options:
         chrome_options.add_argument(option)
 
+    print(chrome_options.binary_location())
+    chrome_options._binary_location = ''
     print("HEADLESS CHECK")
     driver = webdriver.Chrome(executable_path="/usr/local/bin/chromedriver", options=chrome_options)
     print("IT CAN BE NON HEADLESS")
