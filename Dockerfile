@@ -45,7 +45,8 @@ RUN apt-get update && apt-get install -y \
     libfontconfig1 \
     libx11-6 \
     libasound2 \
-    libpulse0
+    libpulse0 \ 
+    chromium-browser
 RUN apt-get update -y
 RUN apt-get install -y python3-pip
 
@@ -57,8 +58,6 @@ chmod +x chromedriver && \
 mv chromedriver /usr/local/bin/
 ENV PATH='/usr/local/bin:${PATH}'
 
-# RUN apt purge chromium-browser
-RUN apt install -y chromium-browser
 RUN pip install -r requirements.txt
 CMD chromium-browser
 # Copies everything to the working directory
