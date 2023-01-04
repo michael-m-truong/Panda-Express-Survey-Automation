@@ -54,7 +54,7 @@ RUN apt-get update && apt-get install -y \
     coreutils \ 
     snapd
 
-RUN service start snapd.service
+RUN snap --version
 RUN snap install chromium
 RUN chromium-browser --version
 
