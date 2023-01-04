@@ -18,7 +18,6 @@ def inputSurveyCode(code, lastDigits):
     chrome_options = Options()
     options = [
         "--headless",
-        "--disable-gpu",
         "--window-size=1920,1200",
         "--ignore-certificate-errors",
         "--disable-extensions",
