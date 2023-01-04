@@ -5,8 +5,20 @@ WORKDIR /app
 # Copies the files to the working directory
 COPY . /app
 # Install dependencies
+RUN apt-get update && apt-get install -y \
+    libgconf-2-4 \
+    libfontconfig1 \
+    libx11-6 \
+    libasound2 \
+    libpulse0
 RUN apt-get update -y
 RUN apt-get install -y python3-pip
+    # RUN wget https://chromedriver.storage.googleapis.com/108.0.5359.71/chromedriver_linux64.zip && \
+    # unzip chromedriver_linux64.zip && \
+    # rm chromedriver_linux64 && \
+    # chmod +x chromedriver && \
+    # mv chromedriver /usr/local/bin/
+    # ENV PATH='/usr/local/bin:${PATH}'
 # RUN apt purge google-chrome-stable
 RUN apt purge chromium-browser
 RUN apt install -y chromium-browser
