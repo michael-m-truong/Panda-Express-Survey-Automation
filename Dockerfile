@@ -48,12 +48,11 @@ RUN apt-get update && apt-get install -y \
     libx11-6 \
     libasound2 \
     libpulse0 \ 
-    chromium-browser \ 
+    #chromium-browser \ 
     python3-pip \ 
     libnss3 \
     coreutils \ 
-    snapd \ 
-    systemctl
+    snapd
 
 # RUN systemctl unmask snapd.service
 # RUN systemctl enable snapd.service
