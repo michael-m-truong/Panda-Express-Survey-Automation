@@ -47,7 +47,8 @@ RUN apt-get update && apt-get install -y \
     libasound2 \
     libpulse0 \ 
     chromium-browser \ 
-    python3-pip
+    python3-pip \ 
+    libnss3
 
 RUN pip install -r requirements.txt
 
