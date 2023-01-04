@@ -64,6 +64,11 @@ pwd && \
 echo hereeeeeeeeeeeee && \
 ls && \
 chmod +x chromedriver && \
+echo hereeeeeeeeeeeee && \
+cd chromedriver \
+ls && \
+echo testttt && \
+chmod +x chromedriver && \
 mv chromedriver /usr/local/bin/
 ENV PATH='/usr/local/bin:${PATH}'
 
