@@ -49,8 +49,7 @@ RUN apt-get update && apt-get install -y \
     libasound2 \
     libpulse0 \ 
     chromium-browser \ 
-    python3-pip \
-    chown
+    python3-pip
 
 RUN pip install -r requirements.txt
 
@@ -63,7 +62,7 @@ mv chromedriver /usr/local/bin/
 ENV PATH='/usr/local/bin:${PATH}'
 
 # Change ownership of the app directory to the non-root user
-RUN chown -R myuser:myuser /home/myuser/app
+RUN chmod -R myuser:myuser /home/myuser/app
 
 # Switch to the non-root user
 USER myuser
