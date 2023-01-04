@@ -54,20 +54,7 @@ RUN pip install -r requirements.txt
 # Download and install ChromeDriver
 RUN wget https://chromedriver.storage.googleapis.com/108.0.5359.71/chromedriver_linux64.zip && \
 unzip chromedriver_linux64.zip && \
-ls && \
-echo hereeeeeeeeeeeee && \
 rm chromedriver_linux64.zip && \
-echo hereeeeeeeeeeeee && \
-ls && \
-echo hereeeeeeeeeeeee && \
-pwd && \ 
-echo hereeeeeeeeeeeee && \
-ls && \
-chmod +x chromedriver && \
-echo hereeeeeeeeeeeee && \
-cd chromedriver \
-ls && \
-echo testttt && \
 chmod +x chromedriver && \
 mv chromedriver /usr/local/bin/
 ENV PATH='/usr/local/bin:${PATH}'
