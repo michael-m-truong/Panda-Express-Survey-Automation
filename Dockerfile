@@ -55,8 +55,10 @@ RUN pip install -r requirements.txt
 RUN wget https://chromedriver.storage.googleapis.com/108.0.5359.71/chromedriver_linux64.zip && \
 unzip chromedriver_linux64.zip && \
 rm chromedriver_linux64.zip && \
-mv chromedriver_linux64 /usr/local/bin/ && \
-chmod +x /usr/local/bin/chromedriver_linux64 
+pwd && \ 
+ls -a && \
+chmod +x chromedriver && \
+mv chromedriver /usr/local/bin/
 ENV PATH='/usr/local/bin:${PATH}'
 
 # CMD chromium-browser
