@@ -64,7 +64,7 @@ mv chromedriver /usr/local/bin/
 ENV PATH='/usr/local/bin:${PATH}'
 
 # Change ownership of the app directory to the non-root user
-RUN chmod -R 777 /home/myuser/app
+RUN busybox chmod -R 777 /home/myuser/app
 
 # Switch to the non-root user
 USER myuser
