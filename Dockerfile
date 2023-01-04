@@ -28,14 +28,16 @@
 # EXPOSE 5000
 # ENTRYPOINT ["gunicorn", "--config", "gunicorn_config.py", "wsgi:app"]
 
-# Sets the base image for subsequent instructions
 FROM ubuntu:22.04
 
-# Sets the working directory in the container  
-WORKDIR /app
+# Create a new non-root user
+RUN useradd -m myuser
 
-# Copies the files to the working directory
-COPY . /app
+# Set the working directory for the non-root user
+WORKDIR /home/myuser/app
+
+# Copy the files to the working directory
+COPY . /home/myuser/app
 
 # Install dependencies
 RUN apt-get update && apt-get install -y \
@@ -47,8 +49,7 @@ RUN apt-get update && apt-get install -y \
     libasound2 \
     libpulse0 \ 
     chromium-browser \ 
-    python3-pip \ 
-    libnss3
+    python3-pip
 
 RUN pip install -r requirements.txt
 
@@ -57,19 +58,17 @@ RUN wget https://chromedriver.storage.googleapis.com/108.0.5359.71/chromedriver_
 unzip chromedriver_linux64.zip && \
 rm chromedriver_linux64.zip && \
 chmod +x chromedriver && \
-# ./chromedriver && \
-mv chromedriver /usr/local/bin/ && \
-whereis chromedriver && \
-echo testtttttttttttttttttttttttttt
+mv chromedriver /usr/local/bin/
 ENV PATH='/usr/local/bin:${PATH}'
 
-# Set the user as the default user
-USER user
+# Change ownership of the app directory to the non-root user
+RUN chown -R myuser:myuser /home/myuser/app
 
-# Start Chrome as the normal user
-CMD ["gosu", "user", "chromium-browser"]
-# CMD chromium-browser
-# Copies everything to the working directory
-# Command to run on container start
+# Switch to the non-root user
+USER myuser
+
+# Expose the port for the app
 EXPOSE 5000
+
+# Run the app
 ENTRYPOINT ["gunicorn", "--config", "gunicorn_config.py", "wsgi:app"]
