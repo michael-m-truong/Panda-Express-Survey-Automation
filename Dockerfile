@@ -59,7 +59,7 @@ chmod +x chromedriver && \
 mv chromedriver /usr/local/bin/
 ENV PATH='/usr/local/bin:${PATH}'
 
-CMD chromium-browser
+# CMD chromium-browser
 # Copies everything to the working directory
 # Command to run on container start
 EXPOSE 5000
