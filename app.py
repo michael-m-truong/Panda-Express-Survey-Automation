@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, request, url_for, session
+from flask import Flask, render_template, redirect, request, url_for, session, make_response
 import os
 from dotenv import load_dotenv
 from threading import Thread
@@ -8,11 +8,13 @@ app = Flask(__name__)
 load_dotenv()
 app.secret_key = os.environ.get("SECRET_KEY")
 
-@app.route("/")
-def home():
-    print("ok")
-    session['visited'] = True
-    return render_template("index.html")
+@app.route('/')
+def index():
+    first_visit = request.cookies.get('first_visit') != 'False'
+    response = make_response(render_template("index.html", first_visit=first_visit))
+    if first_visit:
+        response.set_cookie('first_visit', 'False')
+    return response
 
 @app.route("/submit", methods=["POST"])
 def submit():

@@ -158,7 +158,7 @@
         </ul>
         </div>
         <img id="loading-gif" src="/static/panda_op_crop.gif" style="display: none;">
-        <div class="loader"></div>
+        <div class="loader--hidden"></div>
     </div>
     </form>
     <script>
@@ -189,19 +189,19 @@
             // });
     </script>
     <script>
-        function hidePreloader() {
-            let loader = document.querySelector('.loader');
-            loader.classList = "loader--hidden";
+        function showPreloader() {
+            let loader = document.querySelector('.loader--hidden');
+            loader.classList = "loader";
 
             loader.addEventListener("transitionend", () => {
                 document.body.removeChild(loader);
             });
         }
     </script>
-    {% if 'visited' in session %}
+    {% if first_visit %}
     <script>
-        console.log("no loader")
-        hidePreloader();
+        console.log("FIRST VIIST")
+       showPreloader();
     </script>
     {% endif %}
 </body>
