@@ -237,6 +237,11 @@
     padding-left: 10px;
 }
 
+#loadtext {
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
 /* input::placeholder {
     text-align: center;
 } */

@@ -66,6 +66,7 @@ def survey():
     from production_panda import inputSurveyCode, FillOutSurvey
     try:
         code = session['CN1'] + " " + session['CN2'] + " " + session['CN3'] + " " + session['CN4'] + " " + session['CN5'] + " " + session['CN6']
+        print("code: " +code)
         lastDigits = code[len(code)-2:len(code):]
         code = code[:len(code)-2:]
         inputSurveyCode(code, lastDigits)

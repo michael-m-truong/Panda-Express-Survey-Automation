@@ -42,8 +42,68 @@
             // if (email === '' || CN1 === '' || CN2 === '' || CN3 === '' || CN4 === '' || CN5 === '' || CN6 === '') {
             //     return false;
             // }
-            
-            setTimeout(() => {
+            (async () => {
+            await new Promise(resolve => setTimeout(() => {
+                var data = {
+                    email: document.querySelector('.emailInput').value,
+                    CN1: document.querySelector('#CN1').value,
+                    CN2: document.querySelector('#CN2').value,
+                    CN3: document.querySelector('#CN3').value,
+                    CN4: document.querySelector('#CN4').value,
+                    CN5: document.querySelector('#CN5').value,
+                    CN6: document.querySelector('#CN6').value
+                };
+                var json = JSON.stringify(data);
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', '/loading');
+                xhr.setRequestHeader('Content-Type', 'application/json');
+                xhr.onload = function() {
+                if (xhr.status === 200) {
+                    // update the HTML content
+                    document.getElementById('inside-content').innerHTML = xhr.responseText;
+                    document.getElementById('loading-gif').style.display = 'inline-block'
+                }
+                };
+                xhr.send(json);
+                history.pushState({}, '', '/loading');
+                resolve();
+            }, 400));
+            await new Promise(resolve => setTimeout(() => {
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', '/fill-survey');
+                xhr.onload = function() {
+                    if (xhr.status === 200) {
+                        document.body.innerHTML = xhr.responseText;
+                        console.log(document.getElementById('about'))
+                        if (document.getElementById('about').innerText == 'Invalid code, please try again'){
+                            history.pushState({}, '', '/invalid');
+                        }
+                        else {
+                            history.pushState({}, '', '/complete');
+                        }
+                    }
+                };
+                xhr.send();
+                resolve();
+            }, 500));
+            await new Promise(resolve => setTimeout(() => {
+                document.getElementById('loadtext').innerText = 'Filling out survey..'
+                resolve();
+            }, 1500));
+            await new Promise(resolve => setTimeout(() => {
+                document.getElementById('loadtext').innerText = 'Just a few seconds..'
+                resolve();
+            }, 1500));
+            await new Promise(resolve => setTimeout(() => {
+                document.getElementById('loadtext').innerText = 'Processing request..'
+                resolve();
+            }, 1500));
+            await new Promise(resolve => setTimeout(() => {
+                document.getElementById('loadtext').innerText = 'Almost done...'
+                resolve();
+            }, 3000));
+            })();
+            /*setTimeout(() => {
             
                 var data = {
                     email: document.querySelector('.emailInput').value,
@@ -84,7 +144,7 @@
                     }
                 };
                 xhr.send();
-            }, 500);
+            }, 500); */
                 /*async function fillSurvey() {
                     setTimeout(() => {
                         document.getElementById('form').submit(); 
