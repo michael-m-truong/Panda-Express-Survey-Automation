@@ -95,6 +95,10 @@ RUN echo "http://dl-4.alpinelinux.org/alpine/v3.14/main" >> /etc/apk/repositorie
 RUN apk update
 RUN apk add chromium chromium-chromedriver
 
+# used to install forever
+RUN apk add --no-cache nodejs npm
+RUN npm install -g forever
+
 # upgrade pip
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
@@ -105,3 +109,4 @@ EXPOSE 5000
 
 # Run the app
 ENTRYPOINT ["gunicorn", "--config", "gunicorn_config.py", "wsgi:app"]
+CMD ["forever", "start", "-c", "gunicorn", "--config", "gunicorn_config.py", "wsgi:app"]
