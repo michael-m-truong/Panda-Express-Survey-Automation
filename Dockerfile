@@ -98,6 +98,7 @@ RUN apk add chromium chromium-chromedriver
 # upgrade pip
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
+RUN pip install --upgrade gevent
 
 # expose port for app
 EXPOSE 5000
