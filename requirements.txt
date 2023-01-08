@@ -1,5 +1,4 @@
 Flask
 Gunicorn
 selenium
-webdriver-manager
 python-dotenv
