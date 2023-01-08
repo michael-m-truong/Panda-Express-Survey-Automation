@@ -108,5 +108,5 @@ RUN pip install --upgrade gevent
 EXPOSE 5000
 
 # Run the app
-ENTRYPOINT ["gunicorn", "--config", "gunicorn_config.py", "wsgi:app"]
-CMD ["forever", "start", "-c", "gunicorn", "--config", "gunicorn_config.py", "wsgi:app"]
+# ENTRYPOINT ["gunicorn", "--config", "gunicorn_config.py", "wsgi:app"]
+ENTRYPOINT ["forever", "start", "-c", "gunicorn", "--config", "gunicorn_config.py", "wsgi:app"]
