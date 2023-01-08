@@ -104,9 +104,12 @@ RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 RUN pip install --upgrade gevent
 
+# make start.sh executable
+RUN chmod +x /start.sh
+
 # expose port for app
 EXPOSE 5000
 
 # Run the app
 # ENTRYPOINT ["gunicorn", "--config", "gunicorn_config.py", "wsgi:app"]
-ENTRYPOINT ["forever", "start", "-c", "gunicorn", "--config", "gunicorn_config.py", "wsgi:app"]
+ENTRYPOINT ["forever", "start", "-c", "/start.sh"]
