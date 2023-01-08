@@ -4,4 +4,5 @@ workers = 4
 threads = workers
 timeout = 120
 worker_class = "gevent"
+graceful_timeout = 0
 preload_app = True
