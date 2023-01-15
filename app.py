@@ -63,17 +63,28 @@ def complete():
 def invalid():
     return render_template("invalid.html")
 
+@app.route("/stats")
+def stats():
+    from db.countData import CountData
+    totalValidCodes = CountData()
+    return render_template("stats.html", totalValidCodes=totalValidCodes)
+
 @app.route("/fill-survey", methods=['POST'])
 def survey():
     from production_panda import inputSurveyCode, FillOutSurvey
+    from db.insertData import InsertData
     try:
         code = session['CN1'] + " " + session['CN2'] + " " + session['CN3'] + " " + session['CN4'] + " " + session['CN5'] + " " + session['CN6']
+        full_code = code
+        email = session["email"]
         print("code: " +code)
         lastDigits = code[len(code)-2:len(code):]
         code = code[:len(code)-2:]
         inputSurveyCode(code, lastDigits)
-        t = Thread(target=FillOutSurvey, args=(session["email"],))
+        t = Thread(target=FillOutSurvey, args=(email,))
+        t2 = Thread(target=InsertData, args=(full_code, email))
         t.start()
+        t2.start()
     except Exception as e:
         print(e)
         session.clear()

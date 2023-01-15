@@ -5,14 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Panda Express Survey Filler</title>
-    <link rel="stylesheet" href="/static/test.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='test.css') }}" type="text/css">
     <script src="https://kit.fontawesome.com/17b6e821ef.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="menu">
         <img src="logo.png" alt="">
         <ul>
-            <li onclick="location.href='http://github.com/michael-m-truong/Panda-Express-Survey-Automation'"><i class="fa-brands fa-github"></i></i> github.com/michael-m-truong/Panda-Express-Survey-Automation</li>
+            <li id="stats" onclick="location.href='/stats'"><i class="fa-solid fa-chart-simple"></i> Stats</li>
+            <li id="github" onclick="location.href='http://github.com/michael-m-truong/Panda-Express-Survey-Automation'"><i class="fa-brands fa-github"></i> github.com/michael-m-truong/Panda-Express-Survey-Automation</li>
         </ul>
     </div>
     <form id="form" action="/fill-survey" method="post">

@@ -1,3 +1,5 @@
+@charset "utf-8";
+
 *{
     margin: 0;
     padding: 0;
@@ -103,6 +105,24 @@
         transition: opacity 0.75s, visibility 0.75s;
         
       }
+
+    #stats {
+        margin-right: 20vw;
+        margin-left: 10vw;
+        white-space: nowrap;
+    }
+    
+    #github {
+        font-size: 13px;
+        margin-right: 0px;
+        padding-right: 0px;
+        white-space: normal; 
+        overflow: hidden;
+        
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+    }
 }
 
 @media (min-width: 828px) {
@@ -158,6 +178,14 @@
         background: #0D1E21;
         transition: opacity 0.75s, visibility 0.75s;
       }
+
+    #stats {
+        margin-right: 30vw;
+    }
+    
+    #github {
+        padding-left: 10vw;
+    }
   }
 
 .menu{
@@ -181,6 +209,8 @@
     cursor: pointer;
     font-size: 18px;
 }
+
+
 .menu ul li .fa-solid{
     margin-right: 13px;
     font-size: 20px;
