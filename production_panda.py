@@ -57,24 +57,27 @@ def inputSurveyCode(code, lastDigits):
 
 
 def FillOutSurvey(email_addr):
-    nextLink = driver.find_elements(By.ID, "NextButton")
-    while len(nextLink) != 0:
-        optionButton = driver.find_elements(By.CLASS_NAME, "radioSimpleInput")
-        email = driver.find_elements(By.NAME, "S000057")
-        if len(email) != 0:
-            email = email[0]
-            email.send_keys(email_addr)
-            email = driver.find_element(By.NAME, "S000064")
-            email.send_keys(email_addr)
-            nextLink = driver.find_elements(By.ID, "NextButton")
-            nextLink[0].click()
-            break
-        for i in range(0, len(optionButton), 5):
-            optionButton[i].click()
+    try:
         nextLink = driver.find_elements(By.ID, "NextButton")
-        if len(nextLink) == 0:
-            break
-        nextLink[0].click()
+        while len(nextLink) != 0:
+            optionButton = driver.find_elements(By.CLASS_NAME, "radioSimpleInput")
+            email = driver.find_elements(By.NAME, "S000057")
+            if len(email) != 0:
+                email = email[0]
+                email.send_keys(email_addr)
+                email = driver.find_element(By.NAME, "S000064")
+                email.send_keys(email_addr)
+                nextLink = driver.find_elements(By.ID, "NextButton")
+                nextLink[0].click()
+                break
+            for i in range(0, len(optionButton), 5):
+                optionButton[i].click()
+            nextLink = driver.find_elements(By.ID, "NextButton")
+            if len(nextLink) == 0:
+                break
+            nextLink[0].click()
+    except:
+        pass
 
 def main():
     code = input("Enter panda survey code (put space for '-'): ")
