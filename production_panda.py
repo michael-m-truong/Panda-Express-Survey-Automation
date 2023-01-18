@@ -24,9 +24,9 @@ def inputSurveyCode(code, lastDigits):
 
     # print(chrome_options.binary_location())
     # chrome_options._binary_location = ''
-    print("HEADLESS CHECK")
+    #print("HEADLESS CHECK")
     driver = webdriver.Chrome(options=chrome_options)
-    print("IT CAN BE NON HEADLESS")
+    #print("IT CAN BE NON HEADLESS")
     driver.get("https://www.pandaguestexperience.com/")
 
     verifyLength = code + lastDigits
@@ -38,7 +38,7 @@ def inputSurveyCode(code, lastDigits):
     code4Digit = code.split(" ")
     for i in range(1,6):
         inputBox = driver.find_element(By.NAME, "CN"+str(i))
-        print(code4Digit[i-1])
+        #print(code4Digit[i-1])
         inputBox.send_keys(code4Digit[i-1])
     inputbox = driver.find_element(By.NAME, "CN6")
     inputbox.send_keys(lastDigits)
@@ -47,7 +47,7 @@ def inputSurveyCode(code, lastDigits):
         link = driver.find_element(By.ID, "NextButton")
         link.click()
     except selenium.common.exceptions.NoSuchElementException:
-        print("Wrong survey code")
+        #print("Wrong survey code")
         driver.quit()
     nextLink = driver.find_elements(By.ID, "NextButton")
     buttonValue =  nextLink[0].get_attribute('value')

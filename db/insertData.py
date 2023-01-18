@@ -57,11 +57,12 @@ def InsertData(code, email):
         tables = cur.fetchall()
 
         # Print the tables
-        for table in tables:
-            print(table)
+        #for table in tables:
+            #print(table)
 
         cur.close()
         conn.close()
 
     except Exception as e:
-        print(e)
+        pass
+        #print(e)

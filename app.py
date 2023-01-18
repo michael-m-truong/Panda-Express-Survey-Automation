@@ -18,21 +18,21 @@ def index():
 
 @app.route("/submit", methods=["POST"])
 def submit():
-    print(request.form["email"])
-    print(request.form["CN1"])
-    print(request.form["CN2"])
-    print(request.form["CN3"])
-    print(request.form["CN4"])
-    print(request.form["CN5"])
-    print(request.form["CN6"])
+    # print(request.form["email"])
+    # print(request.form["CN1"])
+    # print(request.form["CN2"])
+    # print(request.form["CN3"])
+    # print(request.form["CN4"])
+    # print(request.form["CN5"])
+    # print(request.form["CN6"])
     return render_template("index.html")
 
 @app.route("/loading", methods=['POST'])
 def loading():
     data = request.get_json()
-    print(data['email'])
+    # print(data['email'])
     session["email"] = data['email']
-    print(session["email"] + "eeeeeeeeeeeee")
+    # print(session["email"] + "eeeeeeeeeeeee")
     session["CN1"] = data['CN1']
     session["CN2"] = data['CN2']
     session["CN3"] = data['CN3']
@@ -42,7 +42,7 @@ def loading():
     return render_template("loading.html")
     from panda import inputSurveyCode, FillOutSurvey
     if "email" in session:
-        print(session["email"])
+        # print(session["email"])
         email =session["email"]
         code = "1111 1111 1111 1111 22"
         lastDigits = code[len(code)-2:len(code):]
@@ -77,7 +77,7 @@ def survey():
         code = session['CN1'] + " " + session['CN2'] + " " + session['CN3'] + " " + session['CN4'] + " " + session['CN5'] + " " + session['CN6']
         full_code = code
         email = session["email"]
-        print("code: " +code)
+        # print("code: " +code)
         lastDigits = code[len(code)-2:len(code):]
         code = code[:len(code)-2:]
         inputSurveyCode(code, lastDigits)
@@ -86,7 +86,7 @@ def survey():
         t.start()
         t2.start()
     except Exception as e:
-        print(e)
+        # print(e)
         session.clear()
         return redirect(url_for("invalid"))
     session.clear()

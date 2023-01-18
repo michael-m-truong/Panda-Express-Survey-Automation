@@ -57,16 +57,17 @@ def CountData():
         tables = cur.fetchall()
         
         # Print the tables
-        for table in tables:
-            print(table)
+        # for table in tables:
+        #     print(table)
 
         cur.close()
         conn.close()
 
-        print(str(table[0]))
-        return str(table[0])
+        #print(str(tables[0][0]))
+        return str(tables[0][0])
 
     except Exception as e:
-        print(e)
+        pass
+        #print(e)
 
-CountData()
+#CountData()
