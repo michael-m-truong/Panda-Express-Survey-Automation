@@ -66,7 +66,8 @@ def invalid():
 @app.route("/stats")
 def stats():
     from db.countData import CountData
-    totalValidCodes = CountData()
+    #totalValidCodes = CountData()
+    totalValidCodes = "2000+"
     return render_template("stats.html", totalValidCodes=totalValidCodes)
 
 @app.route("/fill-survey", methods=['POST'])
