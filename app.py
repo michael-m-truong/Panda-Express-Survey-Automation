@@ -72,7 +72,7 @@ def stats():
     #print(os.environ.get("API_KEY"))
     totalValidCodes = "3000+"
     try:
-        response = requests.get(api_url, headers={'X-Api-Key': os.environ.get("API_KEY")})
+        response = requests.get(api_url, headers={'X-Api-Key': "Qr+s2e9EKBowf7w3Gc7zyA==TTyjizMXAvbY7wak"})
         if response.status_code == 200:
             # Parse the JSON response
             json_data = response.json()
