@@ -5,6 +5,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 
 import requests
+import os
 
 def inputSurveyCode(code, lastDigits):
     global driver
@@ -83,7 +84,7 @@ def FillOutSurvey(email_addr):
 
 def IncrementStatCount():
     api_url = 'https://api.api-ninjas.com/v1/counter?id=surveys_filled&hit=true'
-    response = requests.get(api_url, headers={'X-Api-Key': 'API_KEY'})
+    response = requests.get(api_url, headers={'X-Api-Key': os.environ.get("API_KEY")})
 
 
 def main():
