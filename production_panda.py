@@ -79,15 +79,15 @@ def FillOutSurvey(email_addr):
             if len(nextLink) == 0:
                 break
             nextLink[0].click()
-    except:
-        pass
+    except Exception as e:
+        print(e)
 
 def IncrementStatCount():
     try:
         api_url = 'https://api.api-ninjas.com/v1/counter?id=surveys_filled&hit=true'
         response = requests.get(api_url, headers={'X-Api-Key': os.environ.get("API_KEY")})
     except Exception as e:
-        pass
+        print(e)
 
 
 def main():

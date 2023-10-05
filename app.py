@@ -107,7 +107,7 @@ def survey():
         t2.start()
         t3.start()
     except Exception as e:
-        # print(e)
+        print(e)
         session.clear()
         return redirect(url_for("invalid"))
     session.clear()
