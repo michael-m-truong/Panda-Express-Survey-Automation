@@ -83,8 +83,11 @@ def FillOutSurvey(email_addr):
         pass
 
 def IncrementStatCount():
-    api_url = 'https://api.api-ninjas.com/v1/counter?id=surveys_filled&hit=true'
-    response = requests.get(api_url, headers={'X-Api-Key': os.environ.get("API_KEY")})
+    try:
+        api_url = 'https://api.api-ninjas.com/v1/counter?id=surveys_filled&hit=true'
+        response = requests.get(api_url, headers={'X-Api-Key': os.environ.get("API_KEY")})
+    except Exception as e:
+        pass
 
 
 def main():
