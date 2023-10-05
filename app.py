@@ -2,6 +2,7 @@ from flask import Flask, render_template, redirect, request, url_for, session, m
 import os
 from dotenv import load_dotenv
 from threading import Thread
+import requests
 
 app = Flask(__name__)
 
@@ -65,14 +66,23 @@ def invalid():
 
 @app.route("/stats")
 def stats():
-    from db.countData import CountData
+    #from db.countData import CountData
     #totalValidCodes = CountData()
-    totalValidCodes = "2000+"
+    api_url = 'https://api.api-ninjas.com/v1/counter?id=surveys_filled'
+    response = requests.get(api_url, headers={'X-Api-Key': 'API_KEY'})
+    totalValidCodes = "3000+"
+    if response.status_code == 200:
+        # Parse the JSON response
+        json_data = response.json()
+
+        # Access values from the JSON
+        totalValidCodes = str(json_data['value'])
+
     return render_template("stats.html", totalValidCodes=totalValidCodes)
 
 @app.route("/fill-survey", methods=['POST'])
 def survey():
-    from production_panda import inputSurveyCode, FillOutSurvey
+    from production_panda import inputSurveyCode, FillOutSurvey, incrementStatCount
     from db.insertData import InsertData
     try:
         code = session['CN1'] + " " + session['CN2'] + " " + session['CN3'] + " " + session['CN4'] + " " + session['CN5'] + " " + session['CN6']
@@ -84,8 +94,10 @@ def survey():
         inputSurveyCode(code, lastDigits)
         t = Thread(target=FillOutSurvey, args=(email,))
         t2 = Thread(target=InsertData, args=(full_code, email))
+        t3 = Thread(target=incrementStatCount(), args=())
         t.start()
         t2.start()
+        t3.start()
     except Exception as e:
         # print(e)
         session.clear()

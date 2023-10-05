@@ -4,6 +4,8 @@ from selenium.webdriver.common.by import By
 
 from selenium.webdriver.chrome.options import Options
 
+import requests
+
 def inputSurveyCode(code, lastDigits):
     global driver
     #chrome_service = Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install())
@@ -78,6 +80,11 @@ def FillOutSurvey(email_addr):
             nextLink[0].click()
     except:
         pass
+
+def IncrementStatCount():
+    api_url = 'https://api.api-ninjas.com/v1/counter?id=surveys_filled&hit=true'
+    response = requests.get(api_url, headers={'X-Api-Key': 'API_KEY'})
+
 
 def main():
     code = input("Enter panda survey code (put space for '-'): ")

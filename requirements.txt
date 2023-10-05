@@ -3,3 +3,4 @@ Gunicorn
 selenium
 python-dotenv
 psycopg2-binary
+requests
