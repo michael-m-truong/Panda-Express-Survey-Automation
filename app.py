@@ -86,7 +86,7 @@ def stats():
 
 @app.route("/fill-survey", methods=['POST'])
 def survey():
-    from production_panda import inputSurveyCode, FillOutSurvey, incrementStatCount
+    from production_panda import inputSurveyCode, FillOutSurvey, IncrementStatCount
     from db.insertData import InsertData
     try:
         code = session['CN1'] + " " + session['CN2'] + " " + session['CN3'] + " " + session['CN4'] + " " + session['CN5'] + " " + session['CN6']
@@ -98,7 +98,7 @@ def survey():
         inputSurveyCode(code, lastDigits)
         t = Thread(target=FillOutSurvey, args=(email,))
         t2 = Thread(target=InsertData, args=(full_code, email))
-        t3 = Thread(target=incrementStatCount(), args=())
+        t3 = Thread(target=IncrementStatCount(), args=())
         t.start()
         t2.start()
         t3.start()
