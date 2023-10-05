@@ -4,6 +4,9 @@ from dotenv import load_dotenv
 from threading import Thread
 import requests
 
+from gevent import monkey
+monkey.patch_all()
+
 app = Flask(__name__)
 
 load_dotenv()
