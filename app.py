@@ -70,9 +70,9 @@ def stats():
     #totalValidCodes = CountData()
     api_url = 'https://api.api-ninjas.com/v1/counter?id=surveys_filled'
     #print(os.environ.get("API_KEY"))
+    totalValidCodes = "3000+"
     try:
         response = requests.get(api_url, headers={'X-Api-Key': os.environ.get("API_KEY")})
-        totalValidCodes = "3000+"
         if response.status_code == 200:
             # Parse the JSON response
             json_data = response.json()
