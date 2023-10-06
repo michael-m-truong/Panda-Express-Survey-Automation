@@ -83,7 +83,7 @@
 # # Run the app
 # ENTRYPOINT ["gunicorn", "--config", "gunicorn_config.py", "wsgi:app"]
 
-FROM python:3.9-alpine
+FROM python:3.11-alpine
 
 COPY . .
 
