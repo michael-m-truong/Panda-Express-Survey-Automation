@@ -1,6 +1,6 @@
 Flask
 Gunicorn
-selenium
+selenium=4.9.0
 python-dotenv
 psycopg2-binary
 requests

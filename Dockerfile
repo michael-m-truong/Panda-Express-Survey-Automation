@@ -93,14 +93,7 @@ RUN echo "http://dl-4.alpinelinux.org/alpine/v3.14/main" >> /etc/apk/repositorie
 
 # install chromedriver
 RUN apk update
-#RUN apk add chromium chromium-chromedriver
-
-# Download and install ChromeDriver
-RUN wget https://edgedl.me.gvt1.com/edgedl/chrome/chrome-for-testing/117.0.5938.62/linux64/chromedriver-linux64.zip && \
-    unzip chromedriver-linux64.zip && \
-    rm chromedriver-linux64.zip && \
-    mv chromedriver-linux64/chromedriver /usr/local/bin && \
-    chmod +x /usr/local/bin/chromedriver
+RUN apk add chromium chromium-chromedriver
 
 # upgrade pip
 RUN pip install --upgrade pip
