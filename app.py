@@ -99,7 +99,9 @@ def survey():
         # print("code: " +code)
         lastDigits = code[len(code)-2:len(code):]
         code = code[:len(code)-2:]
+        print("here")
         inputSurveyCode(code, lastDigits)
+        print("here22")
         t = Thread(target=FillOutSurvey, args=(email,))
         t2 = Thread(target=InsertData, args=(full_code, email))
         t3 = Thread(target=IncrementStatCount(), args=())

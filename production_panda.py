@@ -28,7 +28,7 @@ def inputSurveyCode(code, lastDigits):
     # print(chrome_options.binary_location())
     # chrome_options._binary_location = ''
     #print("HEADLESS CHECK")
-    driver = webdriver.Chrome(options=chrome_options)
+    driver = webdriver.Chrome('/usr/local/bin/chromedriver',options=chrome_options)
     #print("IT CAN BE NON HEADLESS")
     driver.get("https://www.pandaguestexperience.com/")
 
@@ -57,6 +57,7 @@ def inputSurveyCode(code, lastDigits):
     if buttonValue == "Start":
         driver.quit()
         raise Exception("Invalid code")
+    print("testing")
 
 
 def FillOutSurvey(email_addr):
