@@ -25,10 +25,11 @@ def inputSurveyCode(code, lastDigits):
     for option in options:
         chrome_options.add_argument(option)
 
+    chrome_options.add_argument('--remote-debugging-port=9222')  # Specify a different port if needed
     # print(chrome_options.binary_location())
     # chrome_options._binary_location = ''
     #print("HEADLESS CHECK")
-    driver = webdriver.Chrome('/usr/local/bin/chromedriver',options=chrome_options)
+    driver = webdriver.Chrome(options=chrome_options)
     #print("IT CAN BE NON HEADLESS")
     driver.get("https://www.pandaguestexperience.com/")
 

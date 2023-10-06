@@ -95,6 +95,12 @@ RUN echo "http://dl-4.alpinelinux.org/alpine/v3.14/main" >> /etc/apk/repositorie
 RUN apk update
 RUN apk add chromium chromium-chromedriver
 
+# Check Chromium version
+RUN chromium --version
+
+# Check Chromedriver version
+RUN chromedriver --version
+
 # upgrade pip
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
