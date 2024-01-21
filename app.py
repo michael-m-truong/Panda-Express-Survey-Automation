@@ -91,29 +91,30 @@ def stats():
 
 @app.route("/fill-survey", methods=['POST'])
 def survey():
-    from production_panda import inputSurveyCode, FillOutSurvey, IncrementStatCount
-    from db.insertData import InsertData
     try:
         code = session['CN1'] + " " + session['CN2'] + " " + session['CN3'] + " " + session['CN4'] + " " + session['CN5'] + " " + session['CN6']
-        full_code = code
         email = session["email"]
-        # print("code: " +code)
-        lastDigits = code[len(code)-2:len(code):]
-        code = code[:len(code)-2:]
-        #print("here")
-        inputSurveyCode(code, lastDigits)
-        #print("here22")
-        t = Thread(target=FillOutSurvey, args=(email,))
-        #t2 = Thread(target=InsertData, args=(full_code, email))
-        t3 = Thread(target=IncrementStatCount(), args=())
+        last_digits = code[len(code) - 2:len(code):]
+        code = code[:len(code) - 2:]
+
+        panda_survey_automation = PandaSurveyAutomation()
+        panda_survey_automation.input_survey_code(code, last_digits)
+
+        t = Thread(target=panda_survey_automation.fill_out_survey, args=(email,))
+        t3 = Thread(target=panda_survey_automation.increment_stat_count, args=())
+
         t.start()
-        #t2.start()
         t3.start()
+
     except Exception as e:
-        #print(e)
         logging.exception("An error occurred:")
         session.clear()
         return redirect(url_for("invalid"))
+
+    finally:
+        # Always quit the driver to release resources
+        panda_survey_automation.quit_driver()
+
     session.clear()
     return redirect(url_for("complete"))
 
