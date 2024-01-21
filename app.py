@@ -103,10 +103,10 @@ def survey():
         inputSurveyCode(code, lastDigits)
         #print("here22")
         t = Thread(target=FillOutSurvey, args=(email,))
-        t2 = Thread(target=InsertData, args=(full_code, email))
+        #t2 = Thread(target=InsertData, args=(full_code, email))
         t3 = Thread(target=IncrementStatCount(), args=())
         t.start()
-        t2.start()
+        #t2.start()
         t3.start()
     except Exception as e:
         #print(e)
