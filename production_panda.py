@@ -1,106 +1,111 @@
 from selenium import webdriver
-import selenium
 from selenium.webdriver.common.by import By
-
 from selenium.webdriver.chrome.options import Options
-
+import selenium
 import requests
 import os
 
-def inputSurveyCode(code, lastDigits):
-    global driver
-    #chrome_service = Service(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install())
+class PandaSurveyAutomation:
+    def __init__(self):
+        self.driver = None
 
-    chrome_options = Options()
-    options = [
-        #"--window-size=1920,1200",
-        #"--ignore-certificate-errors",
-        #"--disable-extensions",
-        "--no-sandbox",
-        "--headless",
-        '--disable-gpu',
-        '--disable-dev-shm-usage',
-        "--window-size=1920,1080"
-    ]
-    for option in options:
-        chrome_options.add_argument(option)
+    def initialize_driver(self):
+        chrome_options = Options()
+        options = [
+            "--no-sandbox",
+            "--headless",
+            '--disable-gpu',
+            '--disable-dev-shm-usage',
+            "--window-size=1920,1080"
+        ]
+        for option in options:
+            chrome_options.add_argument(option)
 
-    chrome_options.add_argument('--remote-debugging-port=9222')  # Specify a different port if needed
-    # print(chrome_options.binary_location())
-    # chrome_options._binary_location = ''
-    #print("HEADLESS CHECK")
-    driver = webdriver.Chrome(options=chrome_options)
-    #print("IT CAN BE NON HEADLESS")
-    driver.get("https://www.pandaguestexperience.com/")
+        chrome_options.add_argument('--remote-debugging-port=9222')
+        self.driver = webdriver.Chrome(options=chrome_options)
 
-    verifyLength = code + lastDigits
-    lengthNoSpaces= verifyLength.replace(" ", "")
-    if len(lengthNoSpaces) != 22:
-        driver.quit()
-        raise Exception("Invalid code length")
+    def quit_driver(self):
+        if self.driver:
+            self.driver.quit()
 
-    code4Digit = code.split(" ")
-    for i in range(1,6):
-        inputBox = driver.find_element(By.NAME, "CN"+str(i))
-        #print(code4Digit[i-1])
-        inputBox.send_keys(code4Digit[i-1])
-    inputbox = driver.find_element(By.NAME, "CN6")
-    inputbox.send_keys(lastDigits)
+    def input_survey_code(self, code, last_digits):
+        self.initialize_driver()
+        
+        try:
+            self.driver.get("https://www.pandaguestexperience.com/")
 
-    try:
-        link = driver.find_element(By.ID, "NextButton")
-        link.click()
-    except selenium.common.exceptions.NoSuchElementException:
-        #print("Wrong survey code")
-        driver.quit()
-    nextLink = driver.find_elements(By.ID, "NextButton")
-    buttonValue =  nextLink[0].get_attribute('value')
-    if buttonValue == "Start":
-        driver.quit()
-        raise Exception("Invalid code")
-    #print("testing")
+            verify_length = code + last_digits
+            length_no_spaces = verify_length.replace(" ", "")
+            if len(length_no_spaces) != 22:
+                raise Exception("Invalid code length")
 
+            code_4_digit = code.split(" ")
+            for i in range(1, 6):
+                input_box = self.driver.find_element(By.NAME, "CN" + str(i))
+                input_box.send_keys(code_4_digit[i - 1])
+            input_box = self.driver.find_element(By.NAME, "CN6")
+            input_box.send_keys(last_digits)
 
-def FillOutSurvey(email_addr):
-    try:
-        nextLink = driver.find_elements(By.ID, "NextButton")
-        while len(nextLink) != 0:
-            optionButton = driver.find_elements(By.CLASS_NAME, "radioSimpleInput")
-            email = driver.find_elements(By.NAME, "S000057")
-            if len(email) != 0:
-                email = email[0]
-                email.send_keys(email_addr)
-                email = driver.find_element(By.NAME, "S000064")
-                email.send_keys(email_addr)
-                nextLink = driver.find_elements(By.ID, "NextButton")
-                nextLink[0].click()
-                break
-            for i in range(0, len(optionButton), 5):
-                optionButton[i].click()
-            nextLink = driver.find_elements(By.ID, "NextButton")
-            if len(nextLink) == 0:
-                break
-            nextLink[0].click()
-    except Exception as e:
-        pass
-        #print(e)
+            link = self.driver.find_element(By.ID, "NextButton")
+            link.click()
 
-def IncrementStatCount():
-    try:
-        api_url = 'https://api.api-ninjas.com/v1/counter?id=surveys_filled&hit=true'
-        response = requests.get(api_url, headers={'X-Api-Key': os.environ.get("API_KEY")})
-    except Exception as e:
-        pass
+            next_link = self.driver.find_elements(By.ID, "NextButton")
+            button_value = next_link[0].get_attribute('value')
+            if button_value == "Start":
+                raise Exception("Invalid code")
+
+        except selenium.common.exceptions.NoSuchElementException:
+            self.quit_driver()
+            raise Exception("Wrong survey code")
+
+    def fill_out_survey(self, email_addr):
+        try:
+            next_link = self.driver.find_elements(By.ID, "NextButton")
+            while len(next_link) != 0:
+                option_button = self.driver.find_elements(By.CLASS_NAME, "radioSimpleInput")
+                email = self.driver.find_elements(By.NAME, "S000057")
+                if len(email) != 0:
+                    email = email[0]
+                    email.send_keys(email_addr)
+                    email = self.driver.find_element(By.NAME, "S000064")
+                    email.send_keys(email_addr)
+                    next_link = self.driver.find_elements(By.ID, "NextButton")
+                    next_link[0].click()
+                    break
+                for i in range(0, len(option_button), 5):
+                    option_button[i].click()
+                next_link = self.driver.find_elements(By.ID, "NextButton")
+                if len(next_link) == 0:
+                    break
+                next_link[0].click()
+
+        except Exception as e:
+            pass
+            # print(e)
+
+    def increment_stat_count(self):
+        try:
+            api_url = 'https://api.api-ninjas.com/v1/counter?id=surveys_filled&hit=true'
+            response = requests.get(api_url, headers={'X-Api-Key': os.environ.get("API_KEY")})
+        except Exception as e:
+            pass
 
 
 def main():
-    code = input("Enter panda survey code (put space for '-'): ")
-    email_addr = input("Enter email: ")
-    lastDigits = code[len(code)-2:len(code):]
-    code = code[:len(code)-2:]
-    inputSurveyCode(code, lastDigits)
-    FillOutSurvey(email_addr)
-  
+    panda_survey_automation = PandaSurveyAutomation()
     
+    try:
+        code = input("Enter panda survey code (put space for '-'): ")
+        email_addr = input("Enter email: ")
+        last_digits = code[len(code) - 2:len(code):]
+        code = code[:len(code) - 2:]
+        
+        panda_survey_automation.input_survey_code(code, last_digits)
+        panda_survey_automation.fill_out_survey(email_addr)
+        
+    finally:
+        panda_survey_automation.quit_driver()
+
+
 if __name__ == "__main__":
     main()
