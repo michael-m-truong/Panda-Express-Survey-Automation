@@ -12,7 +12,7 @@ def inputSurveyCode(code, lastDigits):
     #options.add_experimental_option('excludeSwitches', ['enable-logging'])
     # options.headless = True
     options = [
-        #"--headless",
+        "--headless",
         "--disable-gpu",
         "--window-size=1920,1200",
         "--ignore-certificate-errors",
