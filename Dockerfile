@@ -83,7 +83,7 @@
 # # Run the app
 # ENTRYPOINT ["gunicorn", "--config", "gunicorn_config.py", "wsgi:app"]
 
-FROM python:3.9-alpine
+FROM python:3.11-alpine
 
 COPY . .
 
@@ -94,6 +94,12 @@ RUN echo "http://dl-4.alpinelinux.org/alpine/v3.14/main" >> /etc/apk/repositorie
 # install chromedriver
 RUN apk update
 RUN apk add chromium chromium-chromedriver
+
+# Check Chromium version
+RUN chromium --version
+
+# Check Chromedriver version
+RUN chromedriver --version
 
 # upgrade pip
 RUN pip install --upgrade pip

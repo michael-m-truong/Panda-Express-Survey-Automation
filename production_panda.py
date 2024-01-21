@@ -25,6 +25,7 @@ def inputSurveyCode(code, lastDigits):
     for option in options:
         chrome_options.add_argument(option)
 
+    chrome_options.add_argument('--remote-debugging-port=9222')  # Specify a different port if needed
     # print(chrome_options.binary_location())
     # chrome_options._binary_location = ''
     #print("HEADLESS CHECK")
@@ -57,6 +58,7 @@ def inputSurveyCode(code, lastDigits):
     if buttonValue == "Start":
         driver.quit()
         raise Exception("Invalid code")
+    #print("testing")
 
 
 def FillOutSurvey(email_addr):
@@ -80,14 +82,15 @@ def FillOutSurvey(email_addr):
                 break
             nextLink[0].click()
     except Exception as e:
-        print(e)
+        pass
+        #print(e)
 
 def IncrementStatCount():
     try:
         api_url = 'https://api.api-ninjas.com/v1/counter?id=surveys_filled&hit=true'
         response = requests.get(api_url, headers={'X-Api-Key': os.environ.get("API_KEY")})
     except Exception as e:
-        print(e)
+        pass
 
 
 def main():
