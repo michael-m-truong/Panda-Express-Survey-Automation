@@ -2,6 +2,7 @@ from flask import Flask, render_template, redirect, request, url_for, session, m
 import os
 from dotenv import load_dotenv
 from threading import Thread
+import logging
 
 from gevent import monkey
 monkey.patch_all()
@@ -110,6 +111,7 @@ def survey():
         t3.start()
     except Exception as e:
         #print(e)
+        logging.exception("An error occurred:")
         session.clear()
         return redirect(url_for("invalid"))
     session.clear()
