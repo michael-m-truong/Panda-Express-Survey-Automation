@@ -86,7 +86,7 @@ def stats():
             # Access values from the JSON
             totalValidCodes = str(json_data['value'])
     except Exception as e:
-        pass
+        logging.exception("An error occurred:")
 
     return render_template("stats.html", totalValidCodes=totalValidCodes)
 
