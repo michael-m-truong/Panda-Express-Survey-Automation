@@ -1,12 +1,12 @@
+from gevent import monkey
+monkey.patch_all()
+
 from flask import Flask, render_template, redirect, request, url_for, session, make_response
 import os
 from dotenv import load_dotenv
 from threading import Thread
 import logging
 from production_panda import PandaSurveyAutomation
-
-from gevent import monkey
-monkey.patch_all()
 
 import requests
 
