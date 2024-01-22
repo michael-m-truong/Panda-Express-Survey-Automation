@@ -3,6 +3,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 import selenium
 import requests
+import logging
 import os
 
 class PandaSurveyAutomation:
@@ -80,8 +81,12 @@ class PandaSurveyAutomation:
                 next_link[0].click()
 
         except Exception as e:
-            pass
+            logging.exception("An error occurred:")
             # print(e)
+        
+        finally:
+            # Call quit_driver after finishing the survey
+            self.quit_driver()
 
     def increment_stat_count(self):
         try:

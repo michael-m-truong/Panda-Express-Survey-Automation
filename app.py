@@ -112,9 +112,9 @@ def survey():
         session.clear()
         return redirect(url_for("invalid"))
 
-    finally:
-        # Always quit the driver to release resources
-        panda_survey_automation.quit_driver()
+    # finally:
+    #     # Always quit the driver to release resources
+    #     panda_survey_automation.quit_driver()
 
     session.clear()
     return redirect(url_for("complete"))
