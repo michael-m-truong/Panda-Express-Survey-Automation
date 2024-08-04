@@ -96,7 +96,14 @@ def survey():
         code = session['CN1'] + " " + session['CN2'] + " " + session['CN3'] + " " + session['CN4'] + " " + session['CN5'] + " " + session['CN6']
         email = session["email"]
         last_digits = code[len(code) - 2:len(code):]
-        code = code[:len(code) - 2:]
+
+        verify_length = code + last_digits
+        length_no_spaces = verify_length.replace(" ", "")
+        
+        if length_no_spaces == 24:
+            code = code[:len(code) - 4:]
+        else:
+            code = code[:len(code) - 2:]
 
         panda_survey_automation = PandaSurveyAutomation()
         panda_survey_automation.input_survey_code(code, last_digits)

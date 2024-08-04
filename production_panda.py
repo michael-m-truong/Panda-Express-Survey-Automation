@@ -33,12 +33,16 @@ class PandaSurveyAutomation:
         self.initialize_driver()
         
         try:
-            self.driver.get("https://www.pandaguestexperience.com/")
-
             verify_length = code + last_digits
             length_no_spaces = verify_length.replace(" ", "")
-            if len(length_no_spaces) != 22:
+            
+            if len(length_no_spaces) not in [22,24]:
                 raise Exception("Invalid code length")
+
+            if len(length_no_spaces == 24):
+                self.driver.get("https://www.pandaguestexperience.com/")
+            else:
+                self.driver.get("https://www.pandaguestexperience.com/Index.aspx?POSType=SmartCode")
 
             code_4_digit = code.split(" ")
             for i in range(1, 6):
