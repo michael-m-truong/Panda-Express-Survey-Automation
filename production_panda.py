@@ -39,7 +39,7 @@ class PandaSurveyAutomation:
             if len(length_no_spaces) not in [22,24]:
                 raise Exception("Invalid code length")
 
-            if len(length_no_spaces == 24):
+            if len(length_no_spaces) == 24:
                 self.driver.get("https://www.pandaguestexperience.com/")
             else:
                 self.driver.get("https://www.pandaguestexperience.com/Index.aspx?POSType=SmartCode")
